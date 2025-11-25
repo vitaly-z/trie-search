@@ -920,7 +920,7 @@ describe('TrieSearch', function() {
     });
   });
 
-  describe('TrieSearch::map(...) works with RegEx with positive lookahead (e.g. split on capital letters)', function() {
+  describe('TrieSearch::map(...) and TrieSearch::add(...) work with RegEx with positive lookahead (e.g. split on capital letters)', function() {
     it('should not error', function() {
       expect(() => {
         const ts : TrieSearch<any> = new TrieSearch<any>('key', {
@@ -988,6 +988,24 @@ describe('TrieSearch', function() {
 
       expect(ts.search('Hello')[0]).toBe(item);
       expect(ts.search('Up')[0]).toBe(item2);
+    });
+
+    it('should handle camelCase indexing with ignoreCase', function() {
+      const trie = new TrieSearch('key', {
+        splitOnRegEx: /[\s]|(?=[A-Z])/,
+        splitOnGetRegEx: false,
+      });
+
+      const item1 = { key: 'fooBar', value: 123 };
+      const item2 = { key: 'foo Bar', value: 456 };
+
+      trie.add(item1);
+      trie.add(item2);
+
+      const results = trie.search('BAR');
+      expect(results.length).toEqual(2);
+      expect(results).toContain(item1);
+      expect(results).toContain(item2);
     });
   });
 

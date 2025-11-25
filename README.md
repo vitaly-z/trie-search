@@ -91,7 +91,9 @@ trie search.
 
 `options.min`: Minimum length of a key to store and search. By default this is 1
 
-`options.ingoreCase`: Ignore case of characters when searching
+`options.ignoreCase`: A boolean that controls case sensitivity. When `true` (the default), all keys are indexed in lowercase and all searches are performed in lowercase, making the trie case-insensitive. When `false`, the original casing of keys is preserved during indexing, and lookups become case-sensitive. 
+
+> **Note:** This option is applied *after* a key has been tokenized by `splitOnRegEx`. This allows you to, for example, split a `camelCase` string by its capital letters and then treat each resulting word case-insensitively.
 
 `idFieldOrFunction`: Used to determine a unique string id for each inserted item, especially used by the reducer. By
 default this is a function that uses the provided keyFields to build up an md5 unique id that is stored on each item
