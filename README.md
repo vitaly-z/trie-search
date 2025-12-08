@@ -101,7 +101,7 @@ in the `$tsid` field. Obviously if you don't want this functionality just provid
 
 `splitOnRegEx`: Regular Expression to split all keys into tokens. By default this is any whitespace or punctuation. 
 Set to 'false' if you want to never split string values! Set it to a regular expression to split along other boundaries.
-Default regular expression is now `/[\s.,\/#!$%\^&\*;:{}=\-_`~()]/g`.
+Default regular expression is now ``/[\s.,\/#!$%\^&\*;:{}=\-_`~()]/g``.
 
 `splitOnGetRegEx`: When performing a `search(...)` (formerly called a `get(...)`) this Regular Expression is run on the
 search phrase to split it into sub-phrases that are individually searched and then their resulting match arrays are
