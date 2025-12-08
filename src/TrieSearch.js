@@ -106,9 +106,6 @@ TrieSearch.prototype = {
       if (!val) continue;
 
       val = val.toString();
-      if (this.options.ignoreCase) {
-        val = val.toLowerCase();
-      }
 
       // Given a string like "Björne" this will return ["Björne", "Bjorne"] when using the default
       // expand regex so that the vowel 'o' still returns the result when searching.
